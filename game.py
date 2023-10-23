@@ -20,3 +20,45 @@ class Game:
 			return total_win
 		else: return -1
 
+	def getResults(self):
+		print("Total matches:",self.total_matches,"Max:",self.max_chips)
+		return [self.total_matches, self.max_chips]
+
+
+def martingala(start):
+	game = Game(start)
+	bet = Bet()
+	last_bet = 1
+	bet.betColor(Color.RED, last_bet)
+	while 1:
+		wins = game.play(bet)
+		print("TOTAL CHIPS:",game.player.getChips(), '\n')
+		if wins == -1: break
+		elif wins == 0: last_bet = last_bet *2
+		else: last_bet = 1
+		bet.reset()
+		bet.betColor(Color.RED, last_bet)
+
+	print()
+	return game.getResults()
+
+def basic(start):
+	game = Game(start)
+	bet = Bet()
+	bet.betColor(Color.RED, 2)
+	while 1:
+		if game.play(bet) == -1: break
+		print("TOTAL CHIPS:",game.player.getChips(), '\n')
+	print()
+	return game.getResults()
+
+def testStrategy(func, bet, attempts):
+	results = []
+	for i in range(attempts):
+		results.append(func(bet))
+
+	for r in results:
+		print("Total matches:",r[0],"Max:",r[1])
+
+
+testStrategy(martingala,100,10)
