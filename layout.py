@@ -29,6 +29,15 @@ class Bet:
 
 	def getTotalBet(self): return self._total_bet
 
+	def getBets(self):
+		total_bets = {}
+		for name, bets in self._values.items():
+			if bets:
+				for bet, value in self._values[name].items():
+					total_bets[f'{name} {bet}'] = value
+		return total_bets
+
+
 	def getBet(self, name, bet): 
 		if name not in self._values: return 0
 		elif bet not in self._values[name]: return 0
