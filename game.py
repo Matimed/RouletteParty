@@ -1,5 +1,4 @@
 from roulette import Roulette
-from numbers import Color, Parity, Half
 from layout import Bet
 from player import Player
 
@@ -29,7 +28,7 @@ def martingala(start):
 	game = Game(start)
 	bet = Bet()
 	last_bet = 1
-	bet.betColor(Color.RED, last_bet)
+	bet.betColor("RED", last_bet)
 	while 1:
 		wins = game.play(bet)
 		print("TOTAL CHIPS:",game.player.getChips(), '\n')
@@ -45,7 +44,7 @@ def martingala(start):
 def basic(start):
 	game = Game(start)
 	bet = Bet()
-	bet.betColor(Color.RED, 2)
+	bet.betColor("RED", 2)
 	while 1:
 		if game.play(bet) == -1: break
 		print("TOTAL CHIPS:",game.player.getChips(), '\n')
