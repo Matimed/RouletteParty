@@ -8,16 +8,19 @@ class Game:
 		self.max_chips = initial_chips
 		self.total_matches = 0
 
+	def getPlayerChips(self): return self.player.getChips()
+
 	def play(self, bet):
-		if self.player.validateBet(bet):
+		try:
+			self.player.validateBet(bet)
 			self.total_matches += 1
-			self.player.bet(bet)
+			self.player.placeBet(bet)
 			result= Roulette.spin()
 			total_win = Roulette.pay(bet,result)
 			self.player.win(total_win)
 			if self.player.getChips() > self.max_chips: self.max_chips = self.player.getChips()
 			return total_win
-		else: return -1
+		except: return -1
 
 	def getResults(self):
 		print("Total matches:",self.total_matches,"Max:",self.max_chips)
@@ -36,8 +39,7 @@ def martingala(start):
 		elif wins == 0: last_bet = last_bet *2
 		else: last_bet = 1
 		bet.reset()
-		bet.betColor(Color.RED, last_bet)
-
+		bet.betColor("RED", last_bet)
 	print()
 	return game.getResults()
 

@@ -1,8 +1,8 @@
 import random
 
 class Element:
-	def __init__(self, number = -1):
-		if number == -1: number = random.randint(0,36)
+	def __init__(self, number = None):
+		if number is None: number = random.randint(0,36)
 		assert number >= 0 and number <= 36 , "Element out of range."
 		self.number = number
 

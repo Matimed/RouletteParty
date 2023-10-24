@@ -1,14 +1,11 @@
 import random
 from numbers import Element
-from layout import Layout
 
 class Roulette:
 
 	@staticmethod
 	def spin():
-		result = Element(random.randint(0,36))
-		print("RESULT:",result)
-		return result
+		return Element(random.randint(0,36))
 
 
 	@staticmethod
@@ -22,4 +19,3 @@ class Roulette:
 		total_return += bet.getBet("NUMBER", str(result.getNumber()))*36
 
 		return total_return
-	

@@ -1,6 +1,13 @@
 class Bet:
-	def __init__(self):
+	def __init__(self, name=None, arg=None,chips=None):
 		self.reset()
+		if(Bet.validateBet(name,arg)): self._values[name][arg] = chips
+
+	def __iadd__(self, other):
+		Bet.valdiateCompleteBet(other._values)
+		for key in other._values.keys():
+			self._values[key] |= other._values[key]
+		return self
 
 	def reset(self):
 		self._values = { 
@@ -27,6 +34,12 @@ class Bet:
 
 	def setBet(self, name, arg, chips):
 		self._values[name][arg] = chips
+
+	@staticmethod
+	def valdiateCompleteBet(betDict):
+		for name, args in betDict.items():
+			for arg in args:
+				if Bet.validateBet(name,arg) == 0: raise Exception("Invalid Bet")
 
 	@staticmethod
 	def validateBet(name, arg):
