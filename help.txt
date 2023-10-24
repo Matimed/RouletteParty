@@ -1,5 +1,5 @@
 The syntax for betting is BET [chips] [type] [name]
-Example "BET 50 COLOR RED" to bet 50 chips on the color red.
+(e.g. "BET 50 COLOR RED" to bet 50 chips on the color red).
 The list of available bets is:
    COLOR [RED/BLACK]
    PARITY [EVEN/ODD]

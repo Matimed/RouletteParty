@@ -16,7 +16,7 @@ class TerminalInterface:
 		if bets: 
 			print("Actual bets: ")
 			for bet, value in bets.items():
-				print(f'  {value} {bet}')
+				print(f'  ${value} {bet}')
 		else: print("Place your bets!")
 		print()
 
@@ -28,27 +28,33 @@ class TerminalInterface:
 
 
 	def betMenu(self):
-		bet= Bet()
+		total_bet = Bet()
 		print('\n'"Alright! Place your bets!")
 		while 1:
 			options = input().upper().split()
 			os.system('cls||clear')
 			if options[0] == "HELP": self.help()
 			elif options[0] == "BET":
-				if self.validateBet(options): bet.setBet(options[2],options[3],int(options[1]))
-				self.print_bets(bet)
+				if len(options) == 4: self.addBet(total_bet, options[1], options[2], options[3])
+				self.print_bets(total_bet)
 			elif options[0] == "SPIN": 
-				self.spin(bet)
+				self.spin(total_bet)
 				break
+			elif options[0] == "EXIT" or options[0] == "QUIT": exit()
 			else: 
-				print("Invalid command")
+				print("Invalid command!.")
 				self.help()
 			
 	def spin(self, bet):
 		self.print_bets(bet)
 		print("SPINING...")
 
-	def validateBet(self, bet):
-		return len(bet) == 4
+	def addBet(self, total_bet, chips, name, arg):
+		try:
+			assert Bet.validateBet(name, arg)
+			total_bet.setBet(name, arg, int(chips))
+		except Exception:
+			print("Invalid command!.")
+			self.help()
 
 TerminalInterface()

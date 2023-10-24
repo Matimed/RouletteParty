@@ -25,14 +25,26 @@ class Bet:
 					if value != 0: total_bets[f'{name} {bet}'] = value
 		return total_bets
 
-	def setBet(self, name, bet, chips):
-		self._values[name][bet] = chips
+	def setBet(self, name, arg, chips):
+		self._values[name][arg] = chips
 
+	@staticmethod
+	def validateBet(name, arg):
+		try:
+			match name:
+				case "COLOR": return (arg == "RED" or arg == "BLACK")
+				case "PARITY": return (arg == "EVEN" or arg == "ODD")
+				case "HALF": return (arg == "HIGH" or arg == "LOW")
+				case "COLUMN": return (int(arg) >= 1 and int(arg) <= 3)
+				case "DOZEN": return (int(arg) >= 1 and int(arg) <= 3)
+				case "NUMBER": return (int(arg) >= 0 and int(arg) <= 36)
+				case _  : return 0
+		except: return 0
 
-	def getBet(self, name, bet): 
+	def getBet(self, name, arg): 
 		if name not in self._values: return 0
-		elif bet not in self._values[name]: return 0
-		else: return self._values[name][bet]
+		elif arg not in self._values[name]: return 0
+		else: return self._values[name][arg]
 
 	def betColor(self, color, chips):
 		assert color == "RED" or color == "BLACK", "Bet Error" 
