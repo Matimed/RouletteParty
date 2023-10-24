@@ -1,5 +1,5 @@
 from roulette import Roulette
-from numbers import Color, Parity
+from numbers import Color, Parity, Half
 from layout import Bet
 from player import Player
 

@@ -1,9 +1,10 @@
 from enum import Enum, auto
-from numbers import Color, Parity
+from numbers import Color, Parity, Half
 
 class Layout(Enum):
 	COLOR = auto()
 	PARITY = auto()
+	HALF = auto()
 	COLUMN = auto()
 	DOZEN = auto()
 	NUMBER = auto()
@@ -20,6 +21,7 @@ class Bet:
 		self._values = { 
 			Layout.COLOR: {},
 			Layout.PARITY: {},
+			Layout.HALF: {},
 			Layout.COLUMN: {},
 			Layout.DOZEN: {},
 			Layout.NUMBER: {},
@@ -33,13 +35,18 @@ class Bet:
 		else: return self._values[name][bet]
 
 	def betColor(self, color, chips):
-		assert color == Color.RED or color == Color.BLACK, "Bet Error" 
+		assert color.value != 0, "Bet Error" 
 		self._values[Layout.COLOR][color] = chips
 		self._total_bet += chips
 
 	def betParity(self, parity, chips):
-		assert parity == Parity.EVEN or parity == Parity.ODD, "Bet Error" 
+		assert parity.value != 0, "Bet Error" 
 		self._values[Layout.PARITY][parity] = chips
+		self._total_bet += chips
+
+	def betHalf(self, half, chips):
+		assert half.value != 0, "Bet Error" 
+		self._values[Layout.HALF][half] = chips
 		self._total_bet += chips
 
 	def betColumn(self, column, chips):
@@ -51,7 +58,6 @@ class Bet:
 		assert dozen >= 1 and dozen <= 3 , "Bet Error" 
 		self._values[Layout.DOZEN][dozen] = chips
 		self._total_bet += chips
-
 
 	def betNumber(self, number, chips):
 		assert number >= 0 and number <= 36 , "Bet Error" 

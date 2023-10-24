@@ -1,23 +1,23 @@
 import random
 from enum import Enum
 
-class Color(Enum):
+class OutsideBet(Enum):	
+	def __str__(self) -> str: return self.name
+
+class Color(OutsideBet):
 	GREEN = 0
 	RED = 1
 	BLACK = 2
-	
-	def __str__(self) -> str: return self.name
 
-class Parity(Enum):
+class Parity(OutsideBet):
 	ZERO = 0
 	EVEN = 1
 	ODD = 2
 	
-	def __str__(self) -> str:
-		""" Returns a string which represents the tile.
-		"""
-		
-		return self.name
+class Half(OutsideBet):
+	ZERO = 0
+	LOW = 1
+	HIGH = 2
 
 
 class Element:
@@ -38,6 +38,11 @@ class Element:
 		if self.number == 0: return Parity.ZERO
 		elif (self.number % 2) == 0: return Parity.EVEN
 		else: return Parity.ODD
+
+	def getHalf(self):
+		if self.number == 0: return HALF.ZERO
+		elif self.number >= 19: return HALF.HIGH
+		else: return HALF.LOW
 
 	def getColumn(self):
 		if self.number == 0: return 0
