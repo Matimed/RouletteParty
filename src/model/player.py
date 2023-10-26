@@ -1,4 +1,4 @@
-from bet import Bet
+from src.model import Bet
 
 class Player:
 	def __init__(self, name, initial_chips):

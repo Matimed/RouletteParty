@@ -1,10 +1,10 @@
 import os
 import time
-from bet import Bet
-from roulette import Roulette
-from player import Player
+from src.model import Bet
+from src.model import Roulette
+from src.model import Player
 
-class TerminalInterface:
+class Main:
 	def __init__(self):
 		os.system('cls||clear')
 		self.players = []
@@ -113,6 +113,3 @@ class TerminalInterface:
 		os.system('cls||clear')
 		print("SPINING...")
 		time.sleep(total_time/4)
-
-
-TerminalInterface()

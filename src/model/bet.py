@@ -6,7 +6,7 @@ class Bet:
 
 	def __iadd__(self, other):
 		Bet.valdiateCompleteBet(other._values)
-		for key in other._values.keys():
+		for key in other._values:
 			if key in self._values: self._values[key] |= other._values[key]
 			else: self._values[key] = other._values[key]
 		return self

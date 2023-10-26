@@ -1,5 +1,5 @@
 import random
-from element import Element
+from src.model import Element
 
 class Roulette:
 
