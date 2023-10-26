@@ -59,15 +59,16 @@ class TerminalInterface:
 				elif options[0] == "ADD": self.getActualPlayer().addChips(int(options[1]))
 				elif options[0] == "NEXT": self.nextPlayer()
 				elif options[0] == "SPIN": self.spin(int(options[1])) if len(options) == 2 else self.spin()
+				elif options[0] == "CHEAT": self.spin(1,int(options[1])) if len(options) == 2 else self.spin()
 				elif options[0] == "EXIT" or options[0] == "QUIT": exit()
 				else: raise Exception("Invalid commnand")
 			except Exception as e: 
 				print("Error:",e,'\n')
 				self.help()
 			
-	def spin(self, times=1):
+	def spin(self, times=1,result=None):
 		for i in range(times):
-			result = Roulette.spin()
+			result = Roulette.spin() if result is None else Roulette.cheat(result) 
 			gains = self.payPlayers(result)
 			print("No more bets!")
 			time.sleep(2)

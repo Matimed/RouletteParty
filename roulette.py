@@ -7,6 +7,9 @@ class Roulette:
 	def spin():
 		return Element(random.randint(0,36))
 
+	def cheat(number):
+		return Element(number)
+
 
 	@staticmethod
 	def pay(bet, result):
