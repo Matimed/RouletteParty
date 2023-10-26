@@ -1,4 +1,4 @@
-from layout import Bet
+from bet import Bet
 
 class Player:
 	def __init__(self, name, initial_chips):
@@ -21,14 +21,14 @@ class Player:
 		return chips
 
 	def validateBet(self, bet): 
-		if (bet.getTotalBet() != 0 and self.getFreeChips() < bet.getTotalBet()): raise Exception(self.name,"does not have enough chips to place his bet.")
+		if (bet.getChips() != 0 and self.getFreeChips() < bet.getChips()): raise Exception(self.name,"does not have enough chips to place his bet.")
 
 	def placeBet(self):
-		if (self.getTotalChips() < self.bet.getTotalBet()): raise Exception(self.name,"does not have enough chips to place his bet.")
-		self.chips -= self.bet.getTotalBet()
+		if (self.getTotalChips() < self.bet.getChips()): raise Exception(self.name,"does not have enough chips to place his bet.")
+		self.chips -= self.bet.getChips()
 		return self.bet
 	
-	def getFreeChips(self): return self.chips - self.bet.getTotalBet()
+	def getFreeChips(self): return self.chips - self.bet.getChips()
 
 	def getTotalChips(self): return self.chips
 

@@ -1,5 +1,5 @@
 import random
-from numbers import Element
+from element import Element
 
 class Roulette:
 

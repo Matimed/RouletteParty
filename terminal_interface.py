@@ -1,6 +1,6 @@
 import os
 import time
-from layout import Bet
+from bet import Bet
 from roulette import Roulette
 from player import Player
 
@@ -17,13 +17,13 @@ class TerminalInterface:
 		names = input('Enter player names separated by spaces:\n').split()
 		self.players = [Player(name,initial_capital) for name in names]
 
+
 	def getActualPlayer(self): return self.players[self.p_id]
+
 
 	def nextPlayer(self): 
 		self.p_id = self.p_id+1 if self.p_id < (len(self.players)-1) else 0
 
-	def print_list(self, list):
-		[print(f'({i}) {list[i]}') for i in range(len(list))]
 
 	def printPlayerBets(self):
 		print(self.getActualPlayer().getName(), "turn to bet!")
@@ -32,12 +32,16 @@ class TerminalInterface:
 		if bet: self.printBet(self.getActualPlayer(), bet)
 		else: print("Place your bets!", '\n')
 
+
 	def printBet(self,player, bet):
-		bet_items = bet.getBets().items()
-		print(f"{player.getName()} bets: ")
-		for bet, value in bet_items:
-			print(f'  ${value} {bet}')
+		bet_items = bet.getBetDict().items()
+		if not bet_items: print(f"{player.getName()} did not place bets")
+		else:
+			print(f"{player.getName()} bets: ")
+			for bet, value in bet_items:
+				print(f'  ${value} {bet}')
 		print()
+
 
 	def help(self):
 		with open("help.txt", "r") as file:
@@ -88,9 +92,12 @@ class TerminalInterface:
 		for player in self.players:
 			bet = player.placeBet()
 			self.printBet(player, bet)
-			player.addChips(Roulette.pay(bet,result))
-			player_gains[player] = player.addChips(Roulette.pay(bet,result))
+			player_gains[player] = Roulette.pay(bet,result)
+			player.addChips(player_gains[player])
 		return player_gains
+
+
+	def addBet(self, chips, name, arg): self.getActualPlayer().addBet(Bet(name,arg,chips))
 
 
 	def spinAnimation(self, total_time):
@@ -107,8 +114,5 @@ class TerminalInterface:
 		print("SPINING...")
 		time.sleep(total_time/4)
 
-	def addBet(self, chips, name, arg):
-		assert Bet.validateBet(name, arg)
-		self.getActualPlayer().addBet(Bet(name,arg,chips))
 
 TerminalInterface()

@@ -1,5 +1,5 @@
 from roulette import Roulette
-from layout import Bet
+from bet import Bet
 from player import Player
 
 class Game:
