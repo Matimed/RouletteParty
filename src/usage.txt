@@ -1,0 +1,30 @@
+=== RouletteParty - Usage Instructions ===
+
+Welcome to RouletteParty, your command-line roulette game! Here are the available commands:
+
+1. BET [chips] [type] [name]: Place a bet on the roulette wheel.
+   - Example: BET 50 COLOR RED to bet 50 chips on the red color.
+
+2. CLEAR: Clear the current bet for the player.
+
+3. ADD [chips]: Add chips to your balance.
+   - Example: ADD 100 to add 100 chips to your balance.
+
+4. NEXT: Switch to the next player to place bets.
+
+5. SPIN [?times]: Spin the roulette wheel and reveal the result of the bet. If a number is specified, the roulette wheel will spin multiple times with the same bets.
+
+6. EXIT: Quit the game.
+
+=== Types of Bets ===
+
+You can place various types of bets, including:
+- COLOR [color]: Bet on the color of the pocket (RED or BLACK).
+- PARITY [parity]: Bet on the number's parity (EVEN or ODD).
+- HALF [half]: Bet on the number's half (HIGH or LOW).
+- DOZEN [number]: Bet on one of the three dozens (1, 2, or 3).
+- COLUMN [number]: Bet on one of the three columns (1, 2, or 3).
+- NUMBER [number]: Bet on a specific number (0 to 36)..
+
+
+Make sure you have enough chips to place a bet. Have fun playing RouletteParty!

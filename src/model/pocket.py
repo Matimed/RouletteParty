@@ -1,9 +1,9 @@
 import random
 
-class Element:
+class Pocket:
 	def __init__(self, number = None):
 		if number is None: number = random.randint(0,36)
-		assert number >= 0 and number <= 36 , "Element out of range."
+		assert number >= 0 and number <= 36 , "Number out of range."
 		self.number = number
 
 	def getNumber(self): return self.number

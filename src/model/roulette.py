@@ -1,14 +1,14 @@
 import random
-from src.model import Element
+from src.model import Pocket
 
 class Roulette:
 
 	@staticmethod
 	def spin():
-		return Element(random.randint(0,36))
+		return Pocket(random.randint(0,36))
 
 	def cheat(number):
-		return Element(number)
+		return Pocket(number)
 
 
 	@staticmethod

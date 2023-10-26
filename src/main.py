@@ -13,9 +13,10 @@ class Main:
 		self.betMenu()
 
 	def addPlayers(self):
-		initial_capital = int(input("Enter the number of chips that the players will start with: $"))
+		initial_capital = int(input("Enter the number of chips that the players will start with:\n $"))
 		names = input('Enter player names separated by spaces:\n').split()
 		self.players = [Player(name,initial_capital) for name in names]
+		os.system('cls||clear')
 
 
 	def getActualPlayer(self): return self.players[self.p_id]
@@ -44,7 +45,7 @@ class Main:
 
 
 	def help(self):
-		with open("help.txt", "r") as file:
+		with open("src/usage.txt", "r") as file:
 			file_contents = file.read()
 			print(file_contents)
 		print()
@@ -67,8 +68,8 @@ class Main:
 				elif options[0] == "EXIT" or options[0] == "QUIT": exit()
 				else: raise Exception("Invalid commnand")
 			except Exception as e: 
-				print("Error:",e,'\n')
-				self.help()
+				print("Error:",e)
+				print("Use the HELP command to see the list of commands",'\n')
 			
 	def spin(self, times=1,result=None):
 		for i in range(times):
