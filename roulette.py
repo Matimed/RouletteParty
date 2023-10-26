@@ -14,6 +14,7 @@ class Roulette:
 
 		total_return += bet.getBet("COLOR",result.getColor())*2
 		total_return += bet.getBet("PARITY",result.getParity())*2
+		total_return += bet.getBet("HALF",result.getHalf())*2
 		total_return += bet.getBet("COLUMN",str(result.getColumn()))*3
 		total_return += bet.getBet("DOZEN",str(result.getDozen()))*3
 		total_return += bet.getBet("NUMBER", str(result.getNumber()))*36

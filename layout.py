@@ -1,15 +1,5 @@
 class Bet:
 	def __init__(self, name=None, arg=None,chips=None):
-		self.reset()
-		if(Bet.validateBet(name,arg)): self._values[name][arg] = chips
-
-	def __iadd__(self, other):
-		Bet.valdiateCompleteBet(other._values)
-		for key in other._values.keys():
-			self._values[key] |= other._values[key]
-		return self
-
-	def reset(self):
 		self._values = { 
 			"COLOR": {},
 			"PARITY": {},
@@ -18,13 +8,34 @@ class Bet:
 			"DOZEN": {},
 			"NUMBER": {},
 		}
+		if(Bet.validateBet(name,arg)): self._values[name][arg] = chips
+
+
+	def __iadd__(self, other):
+		Bet.valdiateCompleteBet(other._values)
+		for key in other._values.keys():
+			self._values[key] |= other._values[key]
+		return self
+	
+	
+	def __len__(self):
+		return len(self.getBets().keys())
+
 
 	def getTotalBet(self): 
+		""" Returns the total amount of chips bet.
+		"""
+
 		total = 0
 		for value in self.getBets().values(): total += value
 		return total
 
+
 	def getBets(self):
+		""" Loops through the list of bets and returns a new dictionary 
+			containing a key for each individual bet (regardless of its type).
+		"""
+
 		total_bets = {}
 		for name, bets in self._values.items():
 			if bets:

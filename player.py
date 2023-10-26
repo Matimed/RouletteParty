@@ -4,24 +4,31 @@ class Player:
 	def __init__(self, name, initial_chips):
 		self.name = name
 		self.chips = initial_chips
-		self.betted_chips = 0
+		self.bet = Bet()
+
+	def getName(self): return self.name
+
+	def addBet(self, bet):
+		self.validateBet(bet)
+		self.bet += bet
+
+	def getBet(self): return self.bet
+
+	def clearBet(self): self.bet = Bet()
+
+	def addChips(self, chips):
+		self.chips += chips
+		return chips
 
 	def validateBet(self, bet): 
-		if (bet.getTotalBet() != 0 and self.getChips() < bet.getTotalBet()): raise Exception("Insufficient chips.")
+		if (bet.getTotalBet() != 0 and self.getFreeChips() < bet.getTotalBet()): raise Exception(self.name,"does not have enough chips to place his bet.")
 
-	def calculateBet(self, bet):
-		if (self.getRealChips() < bet.getTotalBet()): raise Exception("Insufficient chips.")
-		self.betted_chips = bet.getTotalBet()
-
-	def placeBet(self, bet):
-		if (self.getRealChips() < bet.getTotalBet()): raise Exception("Insufficient chips.")
-		self.chips -= bet.getTotalBet()
-
-	def win(self, total_win):
-		self.chips += total_win
-		print("You gain",total_win, "chips")
+	def placeBet(self):
+		if (self.getTotalChips() < self.bet.getTotalBet()): raise Exception(self.name,"does not have enough chips to place his bet.")
+		self.chips -= self.bet.getTotalBet()
+		return self.bet
 	
-	def getChips(self): return self.chips - self.betted_chips
+	def getFreeChips(self): return self.chips - self.bet.getTotalBet()
 
-	def getRealChips(self): return self.chips
+	def getTotalChips(self): return self.chips
 
