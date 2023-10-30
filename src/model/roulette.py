@@ -4,12 +4,10 @@ from src.model import Pocket
 class Roulette:
 
 	@staticmethod
-	def spin():
-		return Pocket(random.randint(0,36))
+	def spin(): return Pocket(random.randint(0,36))
 
-	def cheat(number):
-		return Pocket(number)
-
+	@staticmethod
+	def cheat(number): return Pocket(number)
 
 	@staticmethod
 	def pay(bet, result):

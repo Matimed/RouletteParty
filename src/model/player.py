@@ -32,3 +32,4 @@ class Player:
 
 	def getTotalChips(self): return self.chips
 
+	def getChips(self): return self.getFreeChips(), self.getTotalChips()

@@ -23,22 +23,19 @@ class Bet:
 
 	@staticmethod
 	def validateBet(name, arg):
-		match name:
-			case "COLOR": 	
-				if (arg != "RED" and arg != "BLACK"): 	raise Exception("COLOR must be RED or BLACK")
-			case "PARITY": 	
-				if (arg != "EVEN" and arg != "ODD"): 	raise Exception("PARITY must be EVEN or ODD")
-			case "HALF": 	
-				if (arg != "HIGH" and arg != "LOW"): 	raise Exception("HALF must be HIGH or LOW")
-			case "COLUMN": 	
-				if (int(arg) < 1 or int(arg) > 3):		raise Exception("COLUMN	must be a number between 1 and 3")
-			case "DOZEN": 	
-				if (int(arg) < 1 or int(arg) > 3):		raise Exception("DOZEN	must be a number between 1 and 3")
-			case "NUMBER": 	
-				if (int(arg) < 0 or int(arg) > 36):		raise Exception("NUMBER	must be a number between 0 and 36")
-			case _  : 
-				raise Exception("Invalid Bet")
-		return 1
+		if name == "COLOR": 
+			if arg != "RED" and arg != "BLACK": raise Exception("COLOR must be RED or BLACK")
+		elif name == "PARITY": 
+			if arg != "EVEN" and arg != "ODD": 	raise Exception("PARITY must be EVEN or ODD")
+		elif name == "HALF": 
+			if arg != "HIGH" and arg != "LOW": 	raise Exception("HALF must be HIGH or LOW")
+		elif name == "COLUMN": 
+			if int(arg) < 1 or int(arg) > 3:	raise Exception("COLUMN	must be a number between 1 and 3")
+		elif name == "DOZEN": 
+			if int(arg) < 1 or int(arg) > 3:	raise Exception("DOZEN	must be a number between 1 and 3")
+		elif name == "NUMBER": 
+			if int(arg) < 0 or int(arg) > 36:	raise Exception("NUMBER	must be a number between 0 and 36")
+		else: raise Exception("Invalid Bet")
 
 
 	def getBet(self, name, arg):  return self._values[name].get(arg, 0) if name in self._values else 0
@@ -63,16 +60,3 @@ class Bet:
 					if value != 0: total_bets[f'{name} {bet}'] = value
 		return total_bets
 
-
-
-	def betColor(self, color, chips): self.setBet("COLOR",color,chips)
-
-	def betParity(self, parity, chips): self.setBet("PARITY",parity,chips)
-
-	def betHalf(self, half, chips): self.setBet("HALF",half,chips)
-
-	def betColumn(self, column, chips): self.setBet("COLUMN",column,chips)
-
-	def betDozen(self, dozen, chips): self.setBet("DOZEN",dozen,chips)
-
-	def betNumber(self, number, chips): self.setBet("NUMBER",number,chips)
